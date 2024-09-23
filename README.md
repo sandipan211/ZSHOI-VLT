@@ -18,7 +18,8 @@ This repository contains the official PyTorch implementation of our [ICASSP 2024
 
 
 
-## 💪 Pre-trained models
+## 💪 Datasets and Pre-trained models
+- For dataset preparation, check out [these](https://github.com/YueLiao/CDN?tab=readme-ov-file#hico-det) instructions.
 - Download the [params](https://mega.nz/folder/bFUGHSiZ#i-ECSp_MtYbEfO5seXvkIA) folder and put it outside all folders for DETR-based pretrained models.
 - Outside all folders, make a new folder called ```ckpt``` and download the pretrained model of CLIP for [CLIP50x16](https://openaipublic.azureedge.net/clip/models/52378b407f34354e150460fe41077663dd5b39c54cd0bfd2b27167a4a06ec9aa/RN50x16.pt) inside it.
 

@@ -37,4 +37,19 @@ sh train_DETR_CLIP_UA.sh
 ## 🏆Zero-shot Results on HICO-DET
 ![image](https://github.com/user-attachments/assets/34923e96-7f0f-491b-ad3a-08afade66bc7)
 
-  
+## :gift: Citation
+If you use our work for your research, kindly star :star: our repository and consider citing our work using the following BibTex:
+```
+@INPROCEEDINGS{10445910,
+  author={Sarma, Sandipan and Kalkar, Pradnesh and Sur, Arijit},
+  booktitle={ICASSP 2024 - 2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Boosting Zero-Shot Human-Object Interaction Detection with Vision-Language Transfer}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={6355-6359},
+  keywords={Visualization;Semantics;Detectors;Transformers;Feature extraction;Task analysis;Speech processing;Human-object interaction;transformer;CLIP;zero-shot learning},
+  doi={10.1109/ICASSP48485.2024.10445910}}
+```
+## 🙏Acknowledgments
+This work partially borrows codes from [CDN](https://github.com/YueLiao/CDN) and [ConsNet](https://github.com/yeliudev/ConsNet)

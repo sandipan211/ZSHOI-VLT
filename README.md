@@ -8,8 +8,11 @@ This repository contains the official PyTorch implementation of our [ICASSP 2024
 - Human-Object Interaction (HOI) detection is a crucial task that involves localizing interactive human-object pairs and identifying the actions being performed. In this work, our primary focus is improving HOI detection in images, particularly in zero-shot scenarios.
 - The query vectors in our DETR-based framework are vital in projecting an idea about “what” visual information about the human-object pairs to look for, with each vector element suggesting “where” to look for these pairs within the image. Since the final task is to detect human-object pairs, unified query vectors for human-object pairs are important.
 - Despite the unavailability of certain actions and objects (such as in UA and UO settings), our method is better at detecting unseen interactions in such challenging settings.
-
-<img width="584" alt="zshoid" src="https://github.com/user-attachments/assets/3115c1c5-632e-4fe2-acc0-29833b87b088">
+<p align="center">
+  <img width="584" alt="zshoid" src="https://github.com/user-attachments/assets/3115c1c5-632e-4fe2-acc0-29833b87b088">
+    <br>
+    <em>The framework</em>
+</p>
 
 
 

@@ -1,13 +1,20 @@
 # Boosting Zero-shot Human-Object Interaction Detection with Vision-Language Transfer (ICASSP 2024)
 
-Official code for the ICASSP 2024 paper that implements a one-stage DETR-based network for zero-shot HOI detection boosted with vision-language transfer. To be updated soon.
+Official code for the ICASSP 2024 paper that implements a one-stage DETR-based network for zero-shot HOI detection boosted with vision-language transfer.
+
+##  👓 At a glance
+This repository contains the official PyTorch implementation of our [ICASSP 2024](https://2024.ieeeicassp.org) paper : [Boosting Zero-Shot Human-Object Interaction Detection with Vision-Language Transfer](https://ieeexplore.ieee.org/document/10445910), a work done by Sandipan Sarma, Pradnesh Kalkar, and Arijit Sur at [Indian Institute of Technology Guwahati](https://www.iitg.ac.in/cse/). 
+
+- Human-Object Interaction (HOI) detection is a crucial task that involves localizing interactive human-object pairs and identifying the actions being performed. In this work, our primary focus is improving HOI detection in images, particularly in zero-shot scenarios.
+- The query vectors in our DETR-based framework are vital in projecting an idea about “what” visual information about the human-object pairs to look for, with each vector element suggesting “where” to look for these pairs within the image. Since the final task is to detect human-object pairs, unified query vectors for human-object pairs are important.
+- Despite the unavailability of certain actions and objects (such as in UA and UO settings), our method is better at detecting unseen interactions in such challenging settings.
 
 
-## Pre-trained models
+## 💪 Pre-trained models
 - Download the [params](https://mega.nz/folder/bFUGHSiZ#i-ECSp_MtYbEfO5seXvkIA) folder and put it outside all folders for DETR-based pretrained models.
 - Outside all folders, make a new folder called ```ckpt``` and download the pretrained model of CLIP for [CLIP50x16](https://openaipublic.azureedge.net/clip/models/52378b407f34354e150460fe41077663dd5b39c54cd0bfd2b27167a4a06ec9aa/RN50x16.pt) inside it.
 
-## Generating semantics
+## 📝 Generating semantics
 Generate the object, action, and interaction CLIP semantics for offline use by running:
 ```bash
 cd models

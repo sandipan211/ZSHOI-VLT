@@ -1,3 +1,5 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/boosting-zero-shot-human-object-interaction/zero-shot-human-object-interaction-detection)](https://paperswithcode.com/sota/zero-shot-human-object-interaction-detection?p=boosting-zero-shot-human-object-interaction)
+
 # Boosting Zero-shot Human-Object Interaction Detection with Vision-Language Transfer (ICASSP 2024)
 
 Official code for the ICASSP 2024 paper that implements a one-stage DETR-based network for zero-shot HOI detection boosted with vision-language transfer.

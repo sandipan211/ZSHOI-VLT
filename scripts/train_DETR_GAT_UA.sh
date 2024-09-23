@@ -1,5 +1,5 @@
 python3 main.py \
-    --pretrained output/DETR_GAT_UA/checkpoint_latest.pth \
+    --pretrained params/detr-r50-pre-2stage-q64.pth \
     --output_dir output/DETR_GAT_UA \
     --dataset_file hico_ua_st_v1 \
     --hoi_path data/hico_20160224_det \
@@ -9,15 +9,13 @@ python3 main.py \
     --num_queries 64 \
     --dec_layers_hopd 3 \
     --dec_layers_interaction 3 \
-    --epochs 30 \
+    --epochs 50 \
     --use_nms_filter \
     --batch_size 8 \
     --clip_backbone RN50x16 \
-    --model cdn_gat \
+    --model detr_gat \
     --inter_score \
     --num_workers 2 \
     --vdetach \
-    --start_epoch 10 \
     --lr 0.00005 \
-    --lr_drop 15 \
-    --finetune
+    --lr_drop 15

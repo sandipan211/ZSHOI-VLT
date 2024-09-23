@@ -6,3 +6,10 @@ Official code for the ICASSP 2024 paper that implements a one-stage DETR-based n
 ## Pre-trained models
 - Download the [params](https://mega.nz/folder/bFUGHSiZ#i-ECSp_MtYbEfO5seXvkIA) folder and put it outside all folders for DETR-based pretrained models.
 - Outside all folders, make a new folder called ```ckpt``` and download the pretrained model of CLIP for [CLIP50x16](https://openaipublic.azureedge.net/clip/models/52378b407f34354e150460fe41077663dd5b39c54cd0bfd2b27167a4a06ec9aa/RN50x16.pt) inside it.
+
+## Generating semantics
+Generate the object, action, and interaction CLIP semantics for offline use by running:
+```bash
+cd models
+python generate_clip_semantics.py
+```

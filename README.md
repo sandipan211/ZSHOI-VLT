@@ -4,4 +4,4 @@ Official code for the ICASSP 2024 paper that implements a one-stage DETR-based n
 
 
 ## Pre-trained models
-Check for instructions inside the ```params'''
+Check for instructions inside the ```params``` directory for DETR-based pretrained models.

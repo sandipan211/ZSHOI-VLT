@@ -32,9 +32,6 @@ def get_args_parser():
     parser.add_argument('--topk', default=3, type=int)
     parser.add_argument('--thres', default=0.5, type=float)
     parser.add_argument('--inter_score', action='store_true')
-    # parser.add_argument('--topk_is', action='store_true')
-    # parser.add_argument('--gtclip', action='store_true')
-    # parser.add_argument('--neg_0', action='store_true')
     parser.add_argument('--vdetach', action='store_true')
     parser.add_argument('--verb_loss_type', default='focal_bce', type=str, choices=['bce_bce', 'focal_bce', ])
     parser.add_argument('--clip_backbone', default='RN50', choices=['RN50', 'RN50x16', 'RN101', 'ViT-B-32', 'ViT-B-16'])
@@ -71,7 +68,6 @@ def get_args_parser():
     parser.add_argument('--num_queries', default=100, type=int,
                         help="Number of query slots")
     parser.add_argument('--pre_norm', action='store_true')
-    parser.add_argument('--finetune', action='store_true')
 
     # * Segmentation
     parser.add_argument('--masks', action='store_true',
@@ -145,7 +141,6 @@ def get_args_parser():
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed training')
 
     # decoupling training parameters
-    parser.add_argument('--freeze_mode', default=0, type=int)
     parser.add_argument('--obj_reweight', action='store_true')
     parser.add_argument('--verb_reweight', action='store_true')
     parser.add_argument('--use_static_weights', action='store_true',
@@ -192,26 +187,7 @@ def main(args):
         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
         model_without_ddp = model.module
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
-
-    # for name, p in model.named_parameters():
-    #     if 'decoder' not in name and 'verb_class_embed' not in name and 'obj_class_embed' not in name \
-    #                 and 'sub_bbox_embed' not in name and 'obj_bbox_embed' not in name:
-    #                     print("Condition1: ", name)
-        
-    #     if args.use_matching and 'matching_embed' in name:
-    #                 print("Condition2: ", name)
-                            
-    # if args.freeze_mode == 1:
-    #     for name, p in model.named_parameters():
-    #         # the first condition includes the weights from transformer encoder, backbone, query_embed, is_embed, input_proj
-    #         if 'decoder' not in name and 'verb_class_embed' not in name and 'obj_class_embed' not in name \
-    #                 and 'sub_bbox_embed' not in name and 'obj_bbox_embed' not in name:
-    #             p.requires_grad = False
-                
-    #         # this condition is not executed anytime
-    #         if args.use_matching and 'matching_embed' in name:
-    #             p.requires_grad = True
-
+                        
     param_dicts = [
         {"params": [p for n, p in model_without_ddp.named_parameters() if "backbone" not in n and p.requires_grad]},
         {
@@ -239,12 +215,9 @@ def main(args):
     # EDIT: 
     data_loader_train = DataLoader(dataset_train, batch_sampler=batch_sampler_train,
                                    collate_fn=utils.collate_fn, num_workers=args.num_workers)
-    # data_loader_train = DataLoader(dataset_train, batch_sampler=batch_sampler_train,
-    #                                collate_fn=utils.collate_fn)
     data_loader_val = DataLoader(dataset_val, args.batch_size, sampler=sampler_val,
                                  drop_last=False, collate_fn=utils.collate_fn, num_workers=args.num_workers)
-    # data_loader_val = DataLoader(dataset_val, args.batch_size, sampler=sampler_val,
-    #                              drop_last=False, collate_fn=utils.collate_fn)
+
 
     if args.frozen_weights is not None:
         checkpoint = torch.load(args.frozen_weights, map_location='cpu')
@@ -287,10 +260,6 @@ def main(args):
     best_performance_unseen = 0
     best_performance = 0
     best_performance_seen = 0
-    if args.finetune:
-        best_performance = 0.1675
-        best_performance_seen = 0.1851
-        best_performance_unseen = 0.0959
 
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
@@ -321,13 +290,6 @@ def main(args):
             'args': args,
         }, checkpoint_path)
         
-        # if args.freeze_mode == 0 and epoch < args.lr_drop and epoch % 2 == 0:  ## eval every 2 epochs before lr_drop
-        #     continue
-        # elif args.freeze_mode == 0 and epoch >= args.lr_drop and epoch % 2 == 0:  ## eval every 2 epochs after lr_drop
-        #     continue
-
-        # if epoch%2 == 0:
-            # continue
             
         # evaluate on the test set 
         test_stats = evaluate_hoi(args.dataset_file, model, postprocessors, data_loader_val, args.subject_category_id,
@@ -420,18 +382,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser('DETR training and evaluation script', parents=[get_args_parser()])
     args = parser.parse_args()
     if args.output_dir:
-        if 'auto' in args.output_dir:
-            args.output_dir = args.output_dir.split('/')[
-                                  0] + '/' + 'wouaonly_logs_clip{}_{}_tok{}_ce{}_clip{}_thres{}_{}'.format(args.clip,
-                                                                                                           args.dataset_file,
-                                                                                                           args.topk,
-                                                                                                           args.verb_loss_coef,
-                                                                                                           args.clip_loss_coef,
-                                                                                                           args.thres,
-                                                                                                           args.clip_backbone) \
-                if 'uc' not in args.dataset_file else args.output_dir.split('/')[
-                                                          0] + '/' + 're_logs_clip{}_{}{}_tok{}_ce{}_clip{}_thres{}_{}'.format(
-                args.clip, args.dataset_file, args.uc_idx, args.topk, args.verb_loss_coef, args.clip_loss_coef,
-                args.thres, args.clip_backbone)
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     main(args)

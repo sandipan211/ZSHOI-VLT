@@ -20,3 +20,15 @@ Generate the object, action, and interaction CLIP semantics for offline use by r
 cd models
 python generate_clip_semantics.py
 ```
+
+## :bullettrain_side: Training and evaluation
+Run the scripts from the scripts folder which contain ```DETR_CLIP``` in the file name. For example, to train the model for UA setting, run the command:
+```bash
+cd scripts
+sh train_DETR_CLIP_UA.sh
+```
+
+## 🏆Zero-shot Results on HICO-DET
+![image](https://github.com/user-attachments/assets/34923e96-7f0f-491b-ad3a-08afade66bc7)
+
+  

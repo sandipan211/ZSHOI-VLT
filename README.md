@@ -9,6 +9,8 @@ This repository contains the official PyTorch implementation of our [ICASSP 2024
 - The query vectors in our DETR-based framework are vital in projecting an idea about “what” visual information about the human-object pairs to look for, with each vector element suggesting “where” to look for these pairs within the image. Since the final task is to detect human-object pairs, unified query vectors for human-object pairs are important.
 - Despite the unavailability of certain actions and objects (such as in UA and UO settings), our method is better at detecting unseen interactions in such challenging settings.
 
+![image](https://github.com/user-attachments/assets/afea7b37-ea1d-4f20-a5e1-17fb53a23e1f)
+
 
 ## 💪 Pre-trained models
 - Download the [params](https://mega.nz/folder/bFUGHSiZ#i-ECSp_MtYbEfO5seXvkIA) folder and put it outside all folders for DETR-based pretrained models.

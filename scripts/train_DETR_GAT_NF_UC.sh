@@ -9,11 +9,11 @@ python3 main.py \
     --num_queries 64 \
     --dec_layers_hopd 3 \
     --dec_layers_interaction 3 \
-    --epochs 30 \
+    --epochs 50 \
     --use_nms_filter \
     --batch_size 8 \
     --clip_backbone RN50x16 \
-    --model cdn_gat \
+    --model detr_gat \
     --inter_score \
     --vdetach \
     --uc_type non_rare_first \

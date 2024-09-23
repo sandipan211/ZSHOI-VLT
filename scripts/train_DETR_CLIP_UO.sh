@@ -1,6 +1,3 @@
-# --pretrained params/detr-r50-pre-2stage-q64_new.pth \
-# try with 1e-5 lr from 9th epoch itself
-
 python3 main.py \
     --pretrained params/detr-r50-pre-2stage-q64_new.pth \
     --output_dir output/DETR_CLIP_UO \
